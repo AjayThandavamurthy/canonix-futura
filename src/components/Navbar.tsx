@@ -17,6 +17,7 @@ const Navbar = () => {
     { href: '#domains', label: 'Domains' },
     { href: '#why-canonix', label: 'Why Canonix' },
     { href: '#vision', label: 'Vision' },
+    { href: '#careers', label: 'Careers' },
   ];
 
   return (
