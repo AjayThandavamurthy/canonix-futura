@@ -36,7 +36,7 @@ const Navbar = () => {
             <img 
               src={logo} 
               alt="Canonix - Innovate Without Limits" 
-              className="h-12 w-auto"
+              className="h-14 md:h-16 w-auto"
             />
           </a>
 
