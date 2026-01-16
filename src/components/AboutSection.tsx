@@ -24,6 +24,8 @@ const AboutSection = () => {
   const stats = [
     { value: '10+', label: 'Research Projects' },
     { value: '50+', label: 'Team Members' },
+    { value: '5+', label: 'Core Domains' },
+    { value: '100%', label: 'In-house R&D' },
   ];
 
   return (
