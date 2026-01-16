@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import logo from '@/assets/logo.png';
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -31,15 +32,12 @@ const Navbar = () => {
       <div className="section-container">
         <div className="flex items-center justify-between h-20">
           {/* Logo */}
-          <a href="#" className="flex items-center gap-3 group">
-            <div className="relative w-10 h-10">
-              <div className="absolute inset-0 bg-primary rounded-lg rotate-45 group-hover:rotate-[60deg] transition-transform duration-500" />
-              <div className="absolute inset-1 bg-background rounded-md rotate-45 group-hover:rotate-[60deg] transition-transform duration-500" />
-              <div className="absolute inset-2 bg-primary rounded-sm rotate-45 group-hover:rotate-[60deg] transition-transform duration-500" />
-            </div>
-            <span className="font-display text-xl font-bold tracking-wider text-foreground">
-              CANONIX
-            </span>
+          <a href="#" className="flex items-center group">
+            <img 
+              src={logo} 
+              alt="Canonix - Innovate Without Limits" 
+              className="h-12 w-auto"
+            />
           </a>
 
           {/* Desktop Navigation */}

@@ -1,3 +1,5 @@
+import logo from '@/assets/logo.png';
+
 const Footer = () => {
   const currentYear = new Date().getFullYear();
 
@@ -10,22 +12,16 @@ const Footer = () => {
         <div className="grid md:grid-cols-4 gap-12 mb-16">
           {/* Brand */}
           <div className="md:col-span-2">
-            <div className="flex items-center gap-3 mb-6">
-              <div className="relative w-10 h-10">
-                <div className="absolute inset-0 bg-primary rounded-lg rotate-45" />
-                <div className="absolute inset-1 bg-card rounded-md rotate-45" />
-                <div className="absolute inset-2 bg-primary rounded-sm rotate-45" />
-              </div>
-              <span className="font-display text-xl font-bold tracking-wider">
-                CANONIX
-              </span>
+            <div className="mb-6">
+              <img 
+                src={logo} 
+                alt="Canonix - Innovate Without Limits" 
+                className="h-16 w-auto"
+              />
             </div>
             <p className="text-muted-foreground mb-6 max-w-sm leading-relaxed">
               Pioneering the future through AI, robotics, and intelligent automation. 
               Building tomorrow's solutions today.
-            </p>
-            <p className="text-lg font-display font-bold text-primary">
-              Innovate Without Limits
             </p>
           </div>
 
