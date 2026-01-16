@@ -22,10 +22,8 @@ const AboutSection = () => {
   }, []);
 
   const stats = [
-    { value: '50+', label: 'Research Projects' },
-    { value: '15+', label: 'Patents Filed' },
-    { value: '200+', label: 'Team Members' },
-    { value: '8+', label: 'Global Partners' },
+    { value: '10+', label: 'Research Projects' },
+    { value: '50+', label: 'Team Members' },
   ];
 
   return (
