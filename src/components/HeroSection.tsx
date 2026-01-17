@@ -1,28 +1,41 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useCallback } from 'react';
+import { ArrowRight } from 'lucide-react';
 
 const HeroSection = () => {
   const heroRef = useRef<HTMLElement>(null);
 
+  // Throttled parallax effect using requestAnimationFrame
   useEffect(() => {
     const hero = heroRef.current;
     if (!hero) return;
 
-    // Parallax effect on mouse move
+    let rafId: number;
+    let lastX = 0;
+    let lastY = 0;
+
     const handleMouseMove = (e: MouseEvent) => {
       const { clientX, clientY } = e;
       const { innerWidth, innerHeight } = window;
-      const x = (clientX / innerWidth - 0.5) * 20;
-      const y = (clientY / innerHeight - 0.5) * 20;
+      lastX = (clientX / innerWidth - 0.5) * 20;
+      lastY = (clientY / innerHeight - 0.5) * 20;
 
-      const orbs = hero.querySelectorAll('.parallax-orb');
-      orbs.forEach((orb, index) => {
-        const speed = (index + 1) * 0.5;
-        (orb as HTMLElement).style.transform = `translate(${x * speed}px, ${y * speed}px)`;
-      });
+      if (!rafId) {
+        rafId = requestAnimationFrame(() => {
+          const orbs = hero.querySelectorAll('.parallax-orb');
+          orbs.forEach((orb, index) => {
+            const speed = (index + 1) * 0.5;
+            (orb as HTMLElement).style.transform = `translate(${lastX * speed}px, ${lastY * speed}px)`;
+          });
+          rafId = 0;
+        });
+      }
     };
 
-    window.addEventListener('mousemove', handleMouseMove);
-    return () => window.removeEventListener('mousemove', handleMouseMove);
+    window.addEventListener('mousemove', handleMouseMove, { passive: true });
+    return () => {
+      window.removeEventListener('mousemove', handleMouseMove);
+      if (rafId) cancelAnimationFrame(rafId);
+    };
   }, []);
 
   return (
@@ -70,8 +83,8 @@ const HeroSection = () => {
 
           {/* Subtext */}
           <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto mb-10 animate-text-reveal opacity-0" style={{ animationDelay: '1s' }}>
-            A deep-tech company at the forefront of artificial intelligence, robotics, and automation — 
-            engineering tomorrow's solutions for defense, agriculture, and healthcare.
+            A deep-tech company at the forefront of artificial intelligence, robotics, and drone technology — 
+            building innovative solutions for tomorrow's challenges.
           </p>
 
           {/* CTA Buttons */}
@@ -81,14 +94,7 @@ const HeroSection = () => {
               className="btn-primary px-8 py-4 rounded-xl text-base font-semibold text-primary-foreground flex items-center gap-2 group"
             >
               Explore Our Work
-              <svg
-                className="w-5 h-5 transition-transform group-hover:translate-x-1"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-              </svg>
+              <ArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-1" />
             </a>
             <a
               href="#about"

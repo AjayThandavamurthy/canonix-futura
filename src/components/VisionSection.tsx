@@ -1,25 +1,10 @@
-import { useEffect, useRef } from 'react';
+import { useRef } from 'react';
+import { Eye, TrendingUp } from 'lucide-react';
+import { useScrollReveal } from '@/hooks/useScrollReveal';
 
 const VisionSection = () => {
   const sectionRef = useRef<HTMLElement>(null);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('is-visible');
-          }
-        });
-      },
-      { threshold: 0.2 }
-    );
-
-    const elements = sectionRef.current?.querySelectorAll('.scroll-animate');
-    elements?.forEach((el) => observer.observe(el));
-
-    return () => observer.disconnect();
-  }, []);
+  useScrollReveal(sectionRef);
 
   return (
     <section
@@ -44,10 +29,7 @@ const VisionSection = () => {
               
               <div className="relative z-10">
                 <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-primary/10 text-primary mb-8">
-                  <svg className="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
-                  </svg>
+                  <Eye className="w-8 h-8" />
                 </div>
                 
                 <span className="text-primary font-medium text-sm tracking-widest uppercase block mb-4">
@@ -73,9 +55,7 @@ const VisionSection = () => {
               
               <div className="relative z-10">
                 <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-secondary/10 text-secondary mb-8">
-                  <svg className="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
-                  </svg>
+                  <TrendingUp className="w-8 h-8" />
                 </div>
                 
                 <span className="text-secondary font-medium text-sm tracking-widest uppercase block mb-4">

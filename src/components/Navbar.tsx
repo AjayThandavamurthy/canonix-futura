@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import logo from '@/assets/logo.png';
 import ThemeToggle from './ThemeToggle';
+import { navLinks } from '@/config/navigation';
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -10,17 +11,9 @@ const Navbar = () => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50);
     };
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
-
-  const navLinks = [
-    { href: '#about', label: 'About' },
-    { href: '#domains', label: 'Domains' },
-    { href: '#why-canonix', label: 'Why Canonix' },
-    { href: '#vision', label: 'Vision' },
-    { href: '#careers', label: 'Careers' },
-  ];
 
   return (
     <nav
