@@ -1,4 +1,6 @@
-import { useEffect, useRef, useState } from 'react';
+import { useRef, useState } from 'react';
+import { Monitor, Cog, Navigation, ArrowRight, Check } from 'lucide-react';
+import { useScrollReveal } from '@/hooks/useScrollReveal';
 import {
   Dialog,
   DialogContent,
@@ -11,11 +13,7 @@ const domains = [
   {
     title: 'Artificial Intelligence',
     description: 'Advanced machine learning, neural networks, and cognitive computing systems that learn, adapt, and evolve.',
-    icon: (
-      <svg className="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-      </svg>
-    ),
+    icon: Monitor,
     color: 'from-red-500/20 to-orange-500/20',
     details: {
       overview: 'Our AI division develops cutting-edge intelligent systems that power the next generation of autonomous decision-making platforms.',
@@ -32,12 +30,7 @@ const domains = [
   {
     title: 'Robotics & Automation',
     description: 'Precision robotics, autonomous systems, and intelligent automation for industrial and commercial applications.',
-    icon: (
-      <svg className="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-      </svg>
-    ),
+    icon: Cog,
     color: 'from-blue-500/20 to-cyan-500/20',
     details: {
       overview: 'We engineer precision robotic systems and automation solutions that transform industrial operations with unmatched accuracy and efficiency.',
@@ -54,11 +47,7 @@ const domains = [
   {
     title: 'Drone Technology',
     description: 'Autonomous aerial systems, AI-powered drones, real-time monitoring, mapping, inspection, and surveillance solutions for industrial and commercial applications.',
-    icon: (
-      <svg className="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
-      </svg>
-    ),
+    icon: Navigation,
     color: 'from-purple-500/20 to-violet-500/20',
     details: {
       overview: 'Our drone technology division develops autonomous aerial platforms equipped with advanced AI for mission-critical operations across diverse environments.',
@@ -79,24 +68,8 @@ type Domain = typeof domains[0];
 const DomainsSection = () => {
   const sectionRef = useRef<HTMLElement>(null);
   const [selectedDomain, setSelectedDomain] = useState<Domain | null>(null);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('is-visible');
-          }
-        });
-      },
-      { threshold: 0.1 }
-    );
-
-    const elements = sectionRef.current?.querySelectorAll('.scroll-animate');
-    elements?.forEach((el) => observer.observe(el));
-
-    return () => observer.disconnect();
-  }, []);
+  
+  useScrollReveal(sectionRef, { threshold: 0.1 });
 
   const handleLearnMore = (domain: Domain) => {
     setSelectedDomain(domain);
@@ -141,7 +114,7 @@ const DomainsSection = () => {
                 {/* Content */}
                 <div className="relative z-10">
                   <div className="w-14 h-14 rounded-xl bg-primary/10 flex items-center justify-center text-primary mb-6 group-hover:bg-primary group-hover:text-primary-foreground transition-all duration-500">
-                    {domain.icon}
+                    <domain.icon className="w-8 h-8" />
                   </div>
                   <h3 className="font-display text-xl font-bold mb-3 text-foreground group-hover:text-foreground transition-colors">
                     {domain.title}
@@ -156,14 +129,7 @@ const DomainsSection = () => {
                     className="mt-6 flex items-center text-primary group-hover:text-foreground transition-colors cursor-pointer"
                   >
                     <span className="text-sm font-medium mr-2">Learn more</span>
-                    <svg
-                      className="w-4 h-4 transform group-hover:translate-x-2 transition-transform"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                    >
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                    </svg>
+                    <ArrowRight className="w-4 h-4 transform group-hover:translate-x-2 transition-transform" />
                   </button>
                 </div>
 
@@ -183,7 +149,7 @@ const DomainsSection = () => {
               <DialogHeader>
                 <div className="flex items-center gap-4 mb-2">
                   <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center text-primary">
-                    {selectedDomain.icon}
+                    <selectedDomain.icon className="w-6 h-6" />
                   </div>
                   <DialogTitle className="font-display text-2xl font-bold">
                     {selectedDomain.title}
@@ -209,9 +175,7 @@ const DomainsSection = () => {
                   <ul className="space-y-2">
                     {selectedDomain.details.capabilities.map((capability, idx) => (
                       <li key={idx} className="flex items-start gap-3 text-sm text-muted-foreground">
-                        <svg className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                        </svg>
+                        <Check className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
                         {capability}
                       </li>
                     ))}

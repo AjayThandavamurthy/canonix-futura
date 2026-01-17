@@ -1,25 +1,10 @@
-import { useEffect, useRef } from 'react';
+import { useRef } from 'react';
+import { ArrowRight } from 'lucide-react';
+import { useScrollReveal } from '@/hooks/useScrollReveal';
 
 const AboutSection = () => {
   const sectionRef = useRef<HTMLElement>(null);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('is-visible');
-          }
-        });
-      },
-      { threshold: 0.2 }
-    );
-
-    const elements = sectionRef.current?.querySelectorAll('.scroll-animate');
-    elements?.forEach((el) => observer.observe(el));
-
-    return () => observer.disconnect();
-  }, []);
+  useScrollReveal(sectionRef);
 
   const stats = [
     { value: '10+', label: 'Research Projects' },
@@ -75,14 +60,7 @@ const AboutSection = () => {
                 className="inline-flex items-center gap-2 text-primary font-semibold group"
               >
                 Discover Our Domains
-                <svg
-                  className="w-5 h-5 transition-transform group-hover:translate-x-2"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                </svg>
+                <ArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-2" />
               </a>
             </div>
           </div>
