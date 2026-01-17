@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import logo from '@/assets/logo.png';
+import ThemeToggle from './ThemeToggle';
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -52,6 +53,7 @@ const Navbar = () => {
                 <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full" />
               </a>
             ))}
+            <ThemeToggle />
             <a
               href="#contact"
               className="btn-primary px-6 py-2.5 rounded-lg text-sm font-semibold text-primary-foreground"
@@ -60,11 +62,13 @@ const Navbar = () => {
             </a>
           </div>
 
-          {/* Mobile Menu Button */}
-          <button
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="md:hidden relative w-10 h-10 flex items-center justify-center"
-          >
+          {/* Mobile Controls */}
+          <div className="md:hidden flex items-center gap-2">
+            <ThemeToggle />
+            <button
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              className="relative w-10 h-10 flex items-center justify-center"
+            >
             <span
               className={`absolute w-6 h-0.5 bg-foreground transition-all duration-300 ${
                 isMobileMenuOpen ? 'rotate-45' : '-translate-y-2'
@@ -80,7 +84,8 @@ const Navbar = () => {
                 isMobileMenuOpen ? '-rotate-45' : 'translate-y-2'
               }`}
             />
-          </button>
+            </button>
+          </div>
         </div>
 
         {/* Mobile Menu */}

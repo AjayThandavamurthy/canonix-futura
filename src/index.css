@@ -6,8 +6,65 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Orbitron:wght@400;500;600;700;800;900&display=swap');
 
 @layer base {
+  /* Light Theme */
   :root {
-    /* Core Colors - Dark Futuristic Theme */
+    --background: 0 0% 98%;
+    --foreground: 240 10% 10%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 240 10% 10%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 240 10% 10%;
+
+    /* Primary - Crimson Red */
+    --primary: 0 85% 50%;
+    --primary-foreground: 0 0% 100%;
+
+    /* Secondary - Tech Blue */
+    --secondary: 220 90% 56%;
+    --secondary-foreground: 0 0% 100%;
+
+    --muted: 240 5% 92%;
+    --muted-foreground: 240 5% 45%;
+
+    --accent: 0 85% 50%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 240 5% 85%;
+    --input: 240 5% 85%;
+    --ring: 0 85% 50%;
+
+    --radius: 0.75rem;
+
+    /* Custom Gradients - Light */
+    --gradient-primary: linear-gradient(135deg, hsl(0, 85%, 50%) 0%, hsl(350, 90%, 40%) 100%);
+    --gradient-secondary: linear-gradient(135deg, hsl(220, 90%, 56%) 0%, hsl(240, 80%, 50%) 100%);
+    --gradient-dark: linear-gradient(180deg, hsl(0, 0%, 98%) 0%, hsl(240, 10%, 95%) 100%);
+    --gradient-glow: radial-gradient(ellipse at center, hsla(0, 85%, 50%, 0.1) 0%, transparent 70%);
+    --gradient-card: linear-gradient(145deg, hsla(0, 0%, 100%, 0.9) 0%, hsla(240, 10%, 98%, 0.95) 100%);
+
+    /* Shadows - Light */
+    --shadow-glow: 0 0 60px -15px hsla(0, 85%, 50%, 0.3);
+    --shadow-card: 0 25px 50px -12px hsla(0, 0%, 0%, 0.1);
+    --shadow-button: 0 10px 40px -10px hsla(0, 85%, 50%, 0.3);
+
+    /* Sidebar (keeping for compatibility) */
+    --sidebar-background: 0 0% 100%;
+    --sidebar-foreground: 240 10% 10%;
+    --sidebar-primary: 0 85% 50%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 240 5% 92%;
+    --sidebar-accent-foreground: 240 10% 10%;
+    --sidebar-border: 240 5% 85%;
+    --sidebar-ring: 0 85% 50%;
+  }
+
+  /* Dark Theme */
+  .dark {
     --background: 240 10% 4%;
     --foreground: 0 0% 98%;
 
@@ -38,16 +95,14 @@
     --input: 240 10% 15%;
     --ring: 0 85% 55%;
 
-    --radius: 0.75rem;
-
-    /* Custom Gradients */
+    /* Custom Gradients - Dark */
     --gradient-primary: linear-gradient(135deg, hsl(0, 85%, 55%) 0%, hsl(350, 90%, 45%) 100%);
     --gradient-secondary: linear-gradient(135deg, hsl(220, 90%, 56%) 0%, hsl(240, 80%, 50%) 100%);
     --gradient-dark: linear-gradient(180deg, hsl(240, 10%, 4%) 0%, hsl(240, 15%, 8%) 100%);
     --gradient-glow: radial-gradient(ellipse at center, hsla(0, 85%, 55%, 0.15) 0%, transparent 70%);
     --gradient-card: linear-gradient(145deg, hsla(240, 10%, 10%, 0.8) 0%, hsla(240, 10%, 6%, 0.9) 100%);
 
-    /* Shadows */
+    /* Shadows - Dark */
     --shadow-glow: 0 0 60px -15px hsla(0, 85%, 55%, 0.5);
     --shadow-card: 0 25px 50px -12px hsla(0, 0%, 0%, 0.5);
     --shadow-button: 0 10px 40px -10px hsla(0, 85%, 55%, 0.4);
@@ -87,8 +142,8 @@
   /* Animated Background Grid */
   .bg-grid {
     background-image: 
-      linear-gradient(hsla(240, 10%, 20%, 0.1) 1px, transparent 1px),
-      linear-gradient(90deg, hsla(240, 10%, 20%, 0.1) 1px, transparent 1px);
+      linear-gradient(hsl(var(--border) / 0.3) 1px, transparent 1px),
+      linear-gradient(90deg, hsl(var(--border) / 0.3) 1px, transparent 1px);
     background-size: 50px 50px;
   }
 
