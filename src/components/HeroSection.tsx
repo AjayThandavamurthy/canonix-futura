@@ -98,15 +98,15 @@ const HeroSection = () => {
             </a>
           </div>
 
-          {/* Scroll Indicator */}
-          <div className="absolute bottom-10 left-1/2 -translate-x-1/2 animate-text-reveal opacity-0" style={{ animationDelay: '1.5s' }}>
-            <div className="flex flex-col items-center gap-2 text-muted-foreground">
-              <span className="text-xs tracking-widest uppercase">Scroll</span>
-              <div className="w-6 h-10 border-2 border-muted-foreground/30 rounded-full flex justify-center">
-                <div className="w-1.5 h-3 bg-primary rounded-full mt-2 animate-bounce" />
-              </div>
+        {/* Scroll Indicator - positioned outside button area */}
+        <div className="hidden sm:block absolute bottom-4 left-1/2 -translate-x-1/2 animate-text-reveal opacity-0 pointer-events-none" style={{ animationDelay: '1.5s' }}>
+          <div className="flex flex-col items-center gap-2 text-muted-foreground">
+            <span className="text-xs tracking-widest uppercase">Scroll</span>
+            <div className="w-6 h-10 border-2 border-muted-foreground/30 rounded-full flex justify-center">
+              <div className="w-1.5 h-3 bg-primary rounded-full mt-2 animate-bounce" />
             </div>
           </div>
+        </div>
         </div>
       </div>
     </section>
